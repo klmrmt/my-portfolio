@@ -1,0 +1,10 @@
+/* Base Styles */
+@import './base/variables.css';
+@import './base/utilities.css';
+@import './base/animations.css';
+
+/* Component Styles */
+@import './components/buttons.css';
+
+/* Page Styles */
+@import './pages/resume.css';

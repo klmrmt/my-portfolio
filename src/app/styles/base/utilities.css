@@ -1,0 +1,47 @@
+/* Box Styles */
+.box-style {
+  border: var(--border-width) solid var(--border-color);
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-box);
+}
+
+.box-container {
+  width: 90%;
+  padding: var(--spacing-xl);
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .box-container {
+    width: 80%;
+  }
+}
+
+/* Animation Classes */
+.slide-in-left {
+  transform: translateX(-100px);
+  opacity: 0;
+  transition: all var(--transition-slow);
+}
+
+.slide-in-right {
+  transform: translateX(100px);
+  opacity: 0;
+  transition: all var(--transition-slow);
+}
+
+.slide-in-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Layout */
+.page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  padding: 2.5rem 0;
+}

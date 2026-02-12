@@ -1,0 +1,15 @@
+.btn-return {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: var(--border-width) solid var(--border-color);
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-button);
+  color: var(--color-text);
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+}
+
+.btn-return:hover {
+  box-shadow: var(--shadow-button-hover);
+  transform: translate(2px, 2px);
+}
