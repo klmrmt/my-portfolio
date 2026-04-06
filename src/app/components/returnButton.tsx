@@ -4,7 +4,7 @@ export default function ReturnButton() {
   return (
     <Link 
       href="/"
-      className="relative px-4 py-2 border-2 border-black bg-white shadow-[4px_4px_0px_rgba(0,0,0,1)] text-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-[1px_1px_0px_rgba(0,0,0,1)] active:translate-x-[3px] active:translate-y-[3px] transition-all duration-75 inline-block before:content-[''] before:absolute before:top-[-4px] before:left-[-4px] before:right-[-8px] before:bottom-[-8px]"
+      className="relative inline-block border-2 border-[var(--border)] bg-[var(--surface-primary)] px-4 py-2 text-[var(--text-primary)] shadow-[4px_4px_0px_var(--shadow-color)] transition-all duration-150 ease-out hover:translate-x-[1px] hover:translate-y-[1px] hover:bg-[var(--surface-secondary)] hover:shadow-[3px_3px_0px_var(--shadow-color)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_var(--shadow-color)] before:absolute before:top-[-4px] before:right-[-8px] before:bottom-[-8px] before:left-[-4px] before:content-['']"
     >
       ← Home
     </Link>

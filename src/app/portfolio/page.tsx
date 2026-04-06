@@ -44,19 +44,17 @@ const projects = [
 ];
 
 export default function Portfolio() {
-  const [visibleCards, setVisibleCards] = useState(new Set());
-  const [headerVisible, setHeaderVisible] = useState(false);
-  const cardRefs = useRef<HTMLDivElement[]>([]);
-  const headerRef = useRef<HTMLDivElement>(null);
+  const [visibleSections, setVisibleSections] = useState(new Set<string>());
+  const sectionRefs = useRef<HTMLElement[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = (entry.target as HTMLElement).dataset.index;
-            if (index !== undefined) {
-              setVisibleCards(prev => new Set([...prev, index]));
+            const section = (entry.target as HTMLElement).dataset.section;
+            if (section) {
+              setVisibleSections((prev) => new Set([...prev, section]));
             }
           }
         });
@@ -64,52 +62,35 @@ export default function Portfolio() {
       { threshold: 0.1 }
     );
 
-    const headerObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setHeaderVisible(true);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    cardRefs.current.forEach((ref) => {
+    sectionRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
-    if (headerRef.current) {
-      headerObserver.observe(headerRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-      headerObserver.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
-  const addToRefs = (el: HTMLDivElement | null, index: number) => {
-    if (el) {
-      cardRefs.current[index] = el;
+  const addToRefs = (el: HTMLElement | null) => {
+    if (el && !sectionRefs.current.includes(el)) {
+      sectionRefs.current.push(el);
     }
   };
 
   return (
-    <div className="min-h-screen bg-white text-black pt-10 pb-10">
+    <div className="min-h-screen bg-[var(--background)] pt-10 pb-10 text-[var(--text-primary)]">
       <div className="w-[90%] md:w-[85%] mx-auto">
         {/* Header */}
         <div 
-          ref={headerRef}
-          className={`flex justify-between items-start mb-10 transition-all duration-700 ${
-            headerVisible 
+          ref={addToRefs}
+          data-section="header"
+          className={`flex justify-between items-start mb-10 transition-all duration-500 ease-out ${
+            visibleSections.has('header')
               ? 'translate-y-0 opacity-100' 
-              : 'translate-y-[-30px] opacity-0'
+              : 'translate-y-4 opacity-0'
           }`}
         >
           <div>
             <h1 className="text-4xl font-bold mb-2">Portfolio</h1>
-            <p className="text-lg text-gray-700">A selection of projects I've worked on</p>
+            <p className="text-lg text-[var(--text-muted)]">A selection of projects I've worked on</p>
           </div>
           <ReturnButton />
         </div>
@@ -119,14 +100,14 @@ export default function Portfolio() {
           {projects.map((project, index) => (
             <div
               key={index}
-              ref={(el) => addToRefs(el, index)}
-              data-index={index}
-              className={`transition-all duration-700 ${
-                visibleCards.has(String(index))
+              ref={addToRefs}
+              data-section={`card-${index}`}
+              className={`transition-all duration-500 ease-out ${
+                visibleSections.has(`card-${index}`)
                   ? 'translate-y-0 opacity-100'
-                  : 'translate-y-[50px] opacity-0'
+                  : 'translate-y-4 opacity-0'
               }`}
-              style={{ transitionDelay: `${(index % 2) * 100}ms` }}
+              style={{ transitionDelay: `${(index % 2) * 75}ms` }}
             >
               <ProjectCard
                 title={project.title}

@@ -1,19 +1,19 @@
 :root {
   /* Colors */
-  --color-primary: #000000;
-  --color-secondary: #2563eb;
-  --color-text: #000000;
-  --color-text-muted: #6b7280;
-  --color-bg: #ffffff;
+  --color-primary: var(--border);
+  --color-secondary: var(--accent);
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-bg: var(--surface-primary);
   
   /* Shadows */
-  --shadow-box: 8px 8px 0px rgba(0, 0, 0, 1);
-  --shadow-button: 4px 4px 0px rgba(0, 0, 0, 1);
-  --shadow-button-hover: 2px 2px 0px rgba(0, 0, 0, 1);
+  --shadow-box: 8px 8px 0px var(--shadow-color);
+  --shadow-button: 4px 4px 0px var(--shadow-color);
+  --shadow-button-hover: 2px 2px 0px var(--shadow-color);
   
   /* Borders */
   --border-width: 2px;
-  --border-color: var(--color-primary);
+  --border-color: var(--border);
   
   /* Spacing */
   --spacing-xs: 0.25rem;
@@ -25,5 +25,5 @@
   /* Transitions */
   --transition-fast: 200ms ease;
   --transition-normal: 300ms ease;
-  --transition-slow: 700ms ease;
+  --transition-slow: 500ms ease-out;
 }
