@@ -89,7 +89,7 @@ export default function Portfolio() {
           }`}
         >
           <div>
-            <h1 className="text-4xl font-bold mb-2">Portfolio</h1>
+            <h1 className="text-4xl font-bold mb-2 crt-cursor">Portfolio</h1>
             <p className="text-lg text-[var(--text-muted)]">A selection of projects I've worked on</p>
           </div>
           <ReturnButton />
