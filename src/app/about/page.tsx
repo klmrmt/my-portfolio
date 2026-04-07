@@ -135,7 +135,7 @@ export default function About() {
           </h2>
           <div className="flex gap-6">
             <a
-              href="https://github.com"
+              href="https://github.com/klmrmt"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-[var(--text-primary)] underline underline-offset-4 decoration-[var(--text-muted)] transition-colors duration-150 hover:decoration-[var(--text-primary)]"
@@ -143,7 +143,7 @@ export default function About() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/kylemorimoto/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-[var(--text-primary)] underline underline-offset-4 decoration-[var(--text-muted)] transition-colors duration-150 hover:decoration-[var(--text-primary)]"
