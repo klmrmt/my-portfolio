@@ -41,7 +41,7 @@ export default function About() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[var(--background)] px-4 py-16 text-[var(--text-primary)]">
       <div className="relative w-full max-w-2xl">
-        <div className="absolute top-0 right-0">
+        <div className="absolute top-0 right-0 z-10">
           <ReturnButton />
         </div>
 
