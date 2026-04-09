@@ -5,41 +5,16 @@ import ProjectCard from "../components/ProjectCard";
 
 const projects = [
   {
-    title: "Testing Automation Framework",
-    description: "A comprehensive testing framework built to automate QA processes, reducing manual testing time by 60%. Features parallel test execution and detailed reporting.",
-    techStack: ["Python", "Selenium", "pytest", "Docker"],
-    githubUrl: "https://github.com",
+    title: "Rally",
+    description:
+      "A group decision-making app that takes friends from \"what should we do?\" to a concrete plan in under 2 minutes. One person creates a rally, shares a code, everyone votes on budget, vibe, and distance — then AI recommends venues and the group goes.",
+    techStack: ["React 19", "TypeScript", "Vite", "Tailwind CSS", "Express 5", "PostgreSQL", "Twilio"],
   },
   {
-    title: "Personal Portfolio",
-    description: "This portfolio site you're viewing! Built with Next.js and styled with a neo-brutalist design system featuring bold shadows and clean typography.",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "/",
-    githubUrl: "https://github.com",
-  },
-  {
-    title: "Energy Dashboard",
-    description: "An internal dashboard for monitoring and visualizing energy consumption data in real-time. Built during my internship at Ameren.",
-    techStack: ["React", "D3.js", "Node.js", "PostgreSQL"],
-  },
-  {
-    title: "Task Management CLI",
-    description: "A command-line task manager with natural language processing for due dates. Syncs with popular calendar applications.",
-    techStack: ["Go", "SQLite", "Cobra"],
-    githubUrl: "https://github.com",
-  },
-  {
-    title: "Market Disruption Analyzer",
-    description: "Research tool for analyzing market disruption patterns using machine learning. Developed during my time at the Disruption Lab.",
-    techStack: ["Python", "scikit-learn", "Pandas", "Flask"],
-    githubUrl: "https://github.com",
-  },
-  {
-    title: "Real-time Chat App",
-    description: "A WebSocket-based chat application with room support, typing indicators, and message persistence.",
-    techStack: ["React", "Socket.io", "Express", "MongoDB"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
+    title: "Circles",
+    description:
+      "A social platform with a vector-based permission system for granular content sharing. Users create custom circles — Work, Family, Friends — and selectively share posts with specific groups.",
+    techStack: ["Python", "NumPy"],
   },
 ];
 
@@ -90,7 +65,7 @@ export default function Portfolio() {
         >
           <div>
             <h1 className="text-4xl font-bold mb-2 crt-cursor">Portfolio</h1>
-            <p className="text-lg text-[var(--text-muted)]">A selection of projects I've worked on</p>
+            <p className="text-lg text-[var(--text-muted)]">A selection of projects I&apos;ve worked on</p>
           </div>
           <ReturnButton />
         </div>
@@ -113,8 +88,6 @@ export default function Portfolio() {
                 title={project.title}
                 description={project.description}
                 techStack={project.techStack}
-                liveUrl={project.liveUrl}
-                githubUrl={project.githubUrl}
               />
             </div>
           ))}
