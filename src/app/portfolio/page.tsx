@@ -57,14 +57,14 @@ export default function Portfolio() {
         <div 
           ref={addToRefs}
           data-section="header"
-          className={`flex justify-between items-start mb-10 transition-all duration-500 ease-out ${
+          className={`flex justify-between items-start mb-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             visibleSections.has('header')
               ? 'translate-y-0 opacity-100' 
-              : 'translate-y-4 opacity-0'
+              : 'translate-y-6 opacity-0'
           }`}
         >
           <div>
-            <h1 className="text-4xl font-bold mb-2 crt-cursor">Portfolio</h1>
+            <h1 className="font-display text-4xl font-extrabold mb-2 crt-cursor">Portfolio</h1>
             <p className="text-lg text-[var(--text-muted)]">A selection of projects I&apos;ve worked on</p>
           </div>
           <ReturnButton />
@@ -77,10 +77,10 @@ export default function Portfolio() {
               key={index}
               ref={addToRefs}
               data-section={`card-${index}`}
-              className={`transition-all duration-500 ease-out ${
+              className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 visibleSections.has(`card-${index}`)
                   ? 'translate-y-0 opacity-100'
-                  : 'translate-y-4 opacity-0'
+                  : 'translate-y-6 opacity-0'
               }`}
               style={{ transitionDelay: `${(index % 2) * 75}ms` }}
             >

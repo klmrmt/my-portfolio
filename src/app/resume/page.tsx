@@ -94,7 +94,7 @@ const projects = [
 const socialLinks = [
   {
     label: "GitHub",
-    href: "https://github.com",
+    href: "https://github.com/klmrmt",
     icon: (
       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
@@ -103,7 +103,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/kylemorimoto/",
     icon: (
       <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -196,12 +196,12 @@ export default function Resume() {
           data-section="header"
           className={`mb-10 flex justify-between items-start transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             visibleSections.has("header")
-              ? "translate-y-0 opacity-100 blur-0 scale-100"
-              : "translate-y-6 opacity-0 blur-[2px] scale-[0.98]"
+              ? "translate-y-0 opacity-100"
+              : "translate-y-6 opacity-0"
           }`}
         >
           <div>
-            <h1 className="mb-2 text-4xl font-bold crt-cursor">Kyle Morimoto</h1>
+            <h1 className="mb-2 font-display text-4xl font-extrabold crt-cursor">Kyle Morimoto</h1>
             <p className="text-xl text-[var(--text-muted)]">
               Software Engineer
             </p>
@@ -270,32 +270,28 @@ export default function Resume() {
           data-section="education"
           className={`mb-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             visibleSections.has("education")
-              ? "translate-y-0 opacity-100 blur-0 scale-100"
-              : "translate-y-6 opacity-0 blur-[2px] scale-[0.98]"
+              ? "translate-y-0 opacity-100"
+              : "translate-y-6 opacity-0"
           }`}
         >
-          <h2 className="mb-4 border-b-2 border-[var(--border)] pb-2 text-2xl font-bold">
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
             Education
           </h2>
-          <div className="border-2 border-[var(--border)] bg-[var(--surface-primary)] p-6 shadow-[6px_6px_0px_var(--shadow-color)]">
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <h3 className="text-lg font-bold">{education.degree}</h3>
-                <p className="font-medium text-[var(--accent)]">
-                  {education.school}
-                </p>
-                <p className="text-sm text-[var(--text-muted)]">
-                  {education.college}
-                </p>
-                <p className="text-sm text-[var(--text-muted)]">
-                  Minor &amp; Secondary Field: {education.minor}
-                </p>
-              </div>
-              <span className="mt-2 w-fit whitespace-nowrap bg-[var(--surface-inverse)] px-1.5 py-0.5 text-xs font-bold text-[var(--text-inverse)] sm:mt-0">
-                {education.year}
-              </span>
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h3 className="text-lg font-bold">{education.degree}</h3>
+              <p className="font-medium text-[var(--accent)]">
+                {education.school}
+              </p>
+              <p className="text-sm text-[var(--text-muted)]">
+                {education.college} · Minor: {education.minor}
+              </p>
             </div>
+            <span className="mt-2 w-fit whitespace-nowrap text-sm font-medium text-[var(--text-muted)] sm:mt-0">
+              {education.year}
+            </span>
           </div>
+          <div className="mt-4 h-px bg-[var(--border)] opacity-20" />
         </section>
 
         {/* Skills */}
@@ -304,32 +300,31 @@ export default function Resume() {
           data-section="skills"
           className={`mb-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75 ${
             visibleSections.has("skills")
-              ? "translate-y-0 opacity-100 blur-0 scale-100"
-              : "translate-y-6 opacity-0 blur-[2px] scale-[0.98]"
+              ? "translate-y-0 opacity-100"
+              : "translate-y-6 opacity-0"
           }`}
         >
-          <h2 className="mb-4 border-b-2 border-[var(--border)] pb-2 text-2xl font-bold">
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
             Skills
           </h2>
-          <div className="border-2 border-[var(--border)] bg-[var(--surface-primary)] p-6 shadow-[6px_6px_0px_var(--shadow-color)]">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              {Object.entries(skills).map(([category, items]) => (
-                <div key={category}>
-                  <h4 className="mb-3 text-lg font-bold">{category}</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {items.map((skill, i) => (
-                      <span
-                        key={i}
-                        className="border-2 border-[var(--border)] bg-[var(--surface-secondary)] px-3 py-1 text-sm font-medium"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {Object.entries(skills).map(([category, items]) => (
+              <div key={category}>
+                <h4 className="mb-2 text-sm font-bold">{category}</h4>
+                <div className="flex flex-wrap gap-2">
+                  {items.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="border border-[var(--border)] px-3 py-1 text-sm font-medium transition-colors duration-150 hover:bg-[var(--surface-secondary)]"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
+          <div className="mt-6 h-px bg-[var(--border)] opacity-20" />
         </section>
 
         {/* Experience */}
@@ -338,11 +333,11 @@ export default function Resume() {
           data-section="experience-heading"
           className={`mb-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-150 ${
             visibleSections.has("experience-heading")
-              ? "translate-y-0 opacity-100 blur-0 scale-100"
-              : "translate-y-6 opacity-0 blur-[2px] scale-[0.98]"
+              ? "translate-y-0 opacity-100"
+              : "translate-y-6 opacity-0"
           }`}
         >
-          <h2 className="border-b-2 border-[var(--border)] pb-2 text-2xl font-bold">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
             Experience
           </h2>
         </section>
@@ -414,20 +409,20 @@ export default function Resume() {
           data-section="projects"
           className={`mb-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-150 ${
             visibleSections.has("projects")
-              ? "translate-y-0 opacity-100 blur-0 scale-100"
-              : "translate-y-6 opacity-0 blur-[2px] scale-[0.98]"
+              ? "translate-y-0 opacity-100"
+              : "translate-y-6 opacity-0"
           }`}
         >
-          <h2 className="mb-4 border-b-2 border-[var(--border)] pb-2 text-2xl font-bold">
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
             Extracurricular
           </h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {projects.map((project) => (
               <div
                 key={project.name}
-                className="border-2 border-[var(--border)] bg-[var(--surface-primary)] p-5 shadow-[6px_6px_0px_var(--shadow-color)]"
+                className="border border-[var(--border)] bg-[var(--surface-primary)] p-4 shadow-[3px_3px_0px_var(--shadow-color)]"
               >
-                <h3 className="mb-2 text-lg font-bold">{project.name}</h3>
+                <h3 className="mb-1 text-base font-bold">{project.name}</h3>
                 <p className="text-sm leading-relaxed text-[var(--text-muted)]">
                   {project.description}
                 </p>
@@ -442,11 +437,11 @@ export default function Resume() {
           data-section="connect"
           className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-200 ${
             visibleSections.has("connect")
-              ? "translate-y-0 opacity-100 blur-0 scale-100"
-              : "translate-y-6 opacity-0 blur-[2px] scale-[0.98]"
+              ? "translate-y-0 opacity-100"
+              : "translate-y-6 opacity-0"
           }`}
         >
-          <h2 className="mb-4 border-b-2 border-[var(--border)] pb-2 text-2xl font-bold">
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
             Get In Touch
           </h2>
           <div className="flex flex-wrap gap-4">

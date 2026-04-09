@@ -32,10 +32,10 @@ export default function About() {
   };
 
   const sectionClass = (key: string, delay: string = "") =>
-    `transition-all duration-600 ease-out ${delay} ${
+    `transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${delay} ${
       visibleSections.has(key)
         ? "translate-y-0 opacity-100"
-        : "translate-y-5 opacity-0"
+        : "translate-y-6 opacity-0"
     }`;
 
   return (
@@ -51,7 +51,7 @@ export default function About() {
           data-section="hero"
           className={`mb-16 pt-8 ${sectionClass("hero")}`}
         >
-          <h1 className="text-5xl font-bold tracking-tight crt-cursor">Kyle Morimoto</h1>
+          <h1 className="font-display text-5xl font-extrabold tracking-tight crt-cursor">Kyle Morimoto</h1>
           <p className="mt-3 text-lg text-[var(--text-muted)]">
             Software Engineer &middot; Automation
           </p>

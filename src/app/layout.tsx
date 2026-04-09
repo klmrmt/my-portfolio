@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Bricolage_Grotesque, Libre_Franklin } from "next/font/google";
 import ThemeToggle from "./components/ThemeToggle";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+});
+
+const libreFranklin = Libre_Franklin({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -49,7 +56,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} m-0 bg-[var(--background)] text-[var(--text-primary)] antialiased transition-colors duration-300`}
+        className={`${bricolage.variable} ${libreFranklin.variable} ${geistMono.variable} m-0 bg-[var(--background)] text-[var(--text-primary)] antialiased transition-colors duration-300`}
       >
         {children}
         <ThemeToggle />

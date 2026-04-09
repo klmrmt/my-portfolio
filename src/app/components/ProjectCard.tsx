@@ -17,7 +17,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <div className="border-2 border-[var(--border)] bg-[var(--surface-primary)] p-6 shadow-[6px_6px_0px_var(--shadow-color)] transition-all duration-200 ease-out hover:translate-x-[-1px] hover:translate-y-[-1px] hover:bg-[var(--surface-secondary)] hover:shadow-[7px_7px_0px_var(--shadow-color)]">
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <h3 className="font-display text-xl font-bold mb-2">{title}</h3>
       <p className="mb-4 leading-relaxed text-[var(--text-muted)]">{description}</p>
       
       {/* Tech Stack Tags */}
