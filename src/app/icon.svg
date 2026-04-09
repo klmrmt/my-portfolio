@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <style>
+    .k { fill: #3d3929; }
+    @media (prefers-color-scheme: dark) {
+      .k { fill: #ffb000; }
+    }
+  </style>
+  <path class="k" d="M6 4h5.5v9.2L20.2 4H27l-10 10.5L27.5 28H21l-9.5-12v12H6V4z"/>
+</svg>
