@@ -134,7 +134,20 @@ const socialLinks = [
 export default function Resume() {
   const [visibleSections, setVisibleSections] = useState(new Set<string>());
   const [emailCopied, setEmailCopied] = useState(false);
+  const [expandedCards, setExpandedCards] = useState(new Set<number>());
   const sectionRefs = useRef<HTMLElement[]>([]);
+
+  const toggleCard = (index: number) => {
+    setExpandedCards((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  };
 
   const copyEmail = async () => {
     try {
@@ -153,15 +166,9 @@ export default function Resume() {
           const section = (entry.target as HTMLElement).dataset.section;
           if (!section) return;
 
-          setVisibleSections((prev) => {
-            const next = new Set(prev);
-            if (entry.isIntersecting) {
-              next.add(section);
-            } else {
-              next.delete(section);
-            }
-            return next;
-          });
+          if (entry.isIntersecting) {
+            setVisibleSections((prev) => new Set(prev).add(section));
+          }
         });
       },
       { threshold: 0.08 }
@@ -203,27 +210,58 @@ export default function Resume() {
               <span aria-hidden>·</span>
               <span>{CONTACT_PHONE}</span>
               <span aria-hidden>·</span>
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="text-[var(--text-primary)] underline underline-offset-2 hover:text-[var(--accent)]"
-              >
-                {CONTACT_EMAIL}
-              </a>
-              <button
-                type="button"
-                onClick={copyEmail}
-                className="inline-flex items-center border-2 border-[var(--border)] bg-[var(--surface-secondary)] px-2 py-0.5 text-xs font-semibold text-[var(--text-primary)] shadow-[2px_2px_0px_var(--shadow-color)] transition-all hover:translate-x-[-1px] hover:translate-y-[-1px] active:translate-x-[1px] active:translate-y-[1px]"
-                aria-label={
-                  emailCopied
-                    ? "Email copied to clipboard"
-                    : "Copy email to clipboard"
-                }
-              >
-                {emailCopied ? "Copied!" : "Copy"}
-              </button>
+              <span className="inline-flex items-center gap-1.5">
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="text-[var(--text-primary)] underline underline-offset-2 hover:text-[var(--accent)]"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  className="inline-flex items-center border-2 border-[var(--border)] bg-[var(--surface-secondary)] px-2 py-0.5 text-xs font-semibold text-[var(--text-primary)] shadow-[2px_2px_0px_var(--shadow-color)] transition-all hover:translate-x-[-1px] hover:translate-y-[-1px] active:translate-x-[1px] active:translate-y-[1px]"
+                  aria-label={
+                    emailCopied
+                      ? "Email copied to clipboard"
+                      : "Copy email to clipboard"
+                  }
+                >
+                  <svg className="h-3.5 w-3.5 sm:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {emailCopied ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    )}
+                  </svg>
+                  <span className="hidden sm:inline">{emailCopied ? "Copied!" : "Copy"}</span>
+                </button>
+              </span>
             </p>
           </div>
-          <ReturnButton />
+          <div className="flex items-stretch gap-3">
+            <a
+              href="/Kyle_Morimoto_Resume.pdf"
+              download
+              className="inline-flex items-center gap-2 border-2 border-[var(--border)] bg-[var(--surface-primary)] px-4 py-2 font-semibold text-[var(--text-primary)] shadow-[4px_4px_0px_var(--shadow-color)] transition-all duration-150 ease-out hover:translate-x-[-1px] hover:translate-y-[-1px] hover:bg-[var(--surface-secondary)] hover:shadow-[5px_5px_0px_var(--shadow-color)]"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3"
+                />
+              </svg>
+              <span className="hidden sm:inline">Resume</span>
+            </a>
+            <ReturnButton />
+          </div>
         </div>
 
         {/* Education */}
@@ -253,7 +291,7 @@ export default function Resume() {
                   Minor &amp; Secondary Field: {education.minor}
                 </p>
               </div>
-              <span className="mt-2 w-fit whitespace-nowrap bg-[var(--surface-inverse)] px-2 py-1 text-xs font-bold text-[var(--text-inverse)] sm:mt-0">
+              <span className="mt-2 w-fit whitespace-nowrap bg-[var(--surface-inverse)] px-1.5 py-0.5 text-xs font-bold text-[var(--text-inverse)] sm:mt-0">
                 {education.year}
               </span>
             </div>
@@ -313,24 +351,25 @@ export default function Resume() {
           {timelineItems.map((item, index) => {
             const sectionKey = `card-${index}`;
             const isVisible = visibleSections.has(sectionKey);
+            const isExpanded = expandedCards.has(index);
 
             return (
               <article
                 key={index}
                 ref={addToRefs}
                 data-section={sectionKey}
-                className={`flex h-full flex-col border-2 border-[var(--border)] bg-[var(--surface-primary)] p-5 shadow-[6px_6px_0px_var(--shadow-color)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`flex flex-col border-2 border-[var(--border)] bg-[var(--surface-primary)] p-5 shadow-[6px_6px_0px_var(--shadow-color)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   isVisible
                     ? "translate-y-0 opacity-100 blur-0 scale-100"
                     : "translate-y-6 opacity-0 blur-[2px] scale-[0.98]"
                 }`}
                 style={{ transitionDelay: `${(index % 2) * 75}ms` }}
               >
-                <div className="mb-3 flex flex-col gap-1">
+                <div className="mb-2 flex flex-col gap-1">
                   <h3 className="text-lg font-bold leading-tight">
                     {item.title}
                   </h3>
-                  <span className="w-fit whitespace-nowrap bg-[var(--surface-inverse)] px-2 py-1 text-xs font-bold text-[var(--text-inverse)]">
+                  <span className="w-fit whitespace-nowrap bg-[var(--surface-inverse)] px-1.5 py-0.5 text-xs font-bold text-[var(--text-inverse)]">
                     {item.date}
                   </span>
                   <span className="font-medium text-[var(--accent)]">
@@ -340,14 +379,30 @@ export default function Resume() {
                     {item.location}
                   </span>
                 </div>
-                <ul className="mt-auto space-y-1.5 text-sm text-[var(--text-muted)]">
-                  {item.description.map((desc, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--border)]" />
-                      {desc}
-                    </li>
-                  ))}
-                </ul>
+                <div className="relative">
+                  <ul
+                    className={`space-y-1.5 text-sm text-[var(--text-muted)] overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+                      isExpanded ? "max-h-[800px]" : "max-h-[7rem]"
+                    }`}
+                  >
+                    {item.description.map((desc, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--border)]" />
+                        {desc}
+                      </li>
+                    ))}
+                  </ul>
+                  {!isExpanded && (
+                    <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[var(--surface-primary)] to-transparent" />
+                  )}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => toggleCard(index)}
+                  className="mt-2 self-start text-xs font-semibold text-[var(--accent)] hover:underline underline-offset-2"
+                >
+                  {isExpanded ? "Show less" : "Read more"}
+                </button>
               </article>
             );
           })}

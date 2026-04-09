@@ -53,7 +53,7 @@ export default function About() {
         >
           <h1 className="text-5xl font-bold tracking-tight crt-cursor">Kyle Morimoto</h1>
           <p className="mt-3 text-lg text-[var(--text-muted)]">
-            Software Engineer &middot; Automation &middot; Problem Solver
+            Software Engineer &middot; Automation
           </p>
           <div className="mt-6 h-px w-16 bg-[var(--border)]" />
         </section>
@@ -113,7 +113,7 @@ export default function About() {
             When I&apos;m Not Coding
           </h2>
           <div className="flex flex-wrap gap-3">
-            {["Gaming", "Reading", "Running", "Music"].map((hobby) => (
+            {["Gaming", "Reading", "Climbing", "Violin"].map((hobby) => (
               <span
                 key={hobby}
                 className="border border-[var(--border)] px-4 py-2 text-sm font-medium transition-colors duration-150 hover:bg-[var(--surface-secondary)]"
