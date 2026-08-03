@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 type ThemePreference = "system" | "light" | "dark";
 
@@ -35,6 +36,7 @@ function getStoredPreference(): ThemePreference {
 }
 
 export default function ThemeToggle() {
+  const pathname = usePathname();
   const [preference, setPreference] = useState<ThemePreference>("system");
 
   useEffect(() => {
@@ -113,6 +115,8 @@ export default function ThemeToggle() {
         <line x1="9" y1="13" x2="9" y2="16" />
       </svg>
     );
+
+  if (pathname.startsWith("/brain")) return null;
 
   return (
     <div className="fixed right-4 bottom-4 z-50">
