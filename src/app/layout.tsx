@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Bricolage_Grotesque, Libre_Franklin } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import ThemeToggle from "./components/ThemeToggle";
 import "./globals.css";
 
@@ -60,6 +61,7 @@ export default function RootLayout({
       >
         {children}
         <ThemeToggle />
+        <Analytics />
       </body>
     </html>
   );
