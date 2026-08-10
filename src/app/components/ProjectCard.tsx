@@ -49,28 +49,38 @@ export default function ProjectCard({
         <h3 className={`font-display font-bold ${featured ? 'mb-3 text-2xl sm:text-3xl' : 'mb-2 text-xl'}`}>
           {title}
         </h3>
-        <p className="mb-5 leading-relaxed text-[var(--text-muted)]">{description}</p>
+        <p className="mb-5 max-w-[68ch] leading-relaxed text-[var(--text-muted)]">{description}</p>
 
         {highlights && highlights.length > 0 && (
-          <ul className="mb-5 grid gap-x-5 gap-y-2 text-sm sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            {highlights.map((highlight) => (
-              <li key={highlight} className="flex items-start gap-2">
-                <span className="mt-[0.45em] h-2 w-2 shrink-0 bg-[var(--accent)]" aria-hidden="true" />
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="mb-5">
+            <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
+              Built around
+            </p>
+            <ul className={`grid gap-x-5 gap-y-2 text-sm ${featured ? 'sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2' : ''}`}>
+              {highlights.map((highlight) => (
+                <li key={highlight} className="flex items-start gap-2">
+                  <span className="mt-[0.45em] h-2 w-2 shrink-0 bg-[var(--accent)]" aria-hidden="true" />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
 
-        <div className="mb-5 flex flex-wrap gap-2">
-          {techStack.map((tech) => (
-            <span
-              key={tech}
-              className="border-2 border-[var(--border)] bg-[var(--surface-secondary)] px-2 py-1 text-sm font-medium"
-            >
-              {tech}
-            </span>
-          ))}
+        <div className="mb-5">
+          <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
+            Built with
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="border-2 border-[var(--border)] bg-[var(--surface-secondary)] px-2 py-1 text-sm font-medium"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div className="mt-auto flex flex-wrap gap-3">

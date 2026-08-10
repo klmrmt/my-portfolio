@@ -6,14 +6,14 @@ import SummerGamesPreview from "../components/SummerGamesPreview";
 
 const featuredProject = {
   title: "The Computer Summer Games",
-  eyebrow: "Featured · Interactive",
+  eyebrow: "Featured project · Live",
   description:
-    "An original five-event computer-athletics circuit inside a playful early-2000s desktop. Players scroll, type, aim, time, and click through ranked events, with every score validated by the server before it reaches the leaderboard.",
+    "A five-event browser competition disguised as an early-2000s desktop. I designed and built the full experience—from tactile events with mouse, keyboard, and touch controls to server-validated scoring and per-event world rankings.",
   highlights: [
-    "Five distinct ranked events",
-    "Pointer, keyboard, and touch controls",
-    "Server-owned run validation",
-    "Per-event mobile and desktop rankings",
+    "Five original events, each with a distinct interaction",
+    "Controls tuned for mouse, keyboard, and touch",
+    "Scores validated by the server before they are ranked",
+    "Separate world rankings by event and device class",
   ],
   techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "DynamoDB", "PostHog"],
   liveUrl: "https://summergames.tapp.inc",
@@ -23,14 +23,28 @@ const featuredProject = {
 const projects = [
   {
     title: "Rally",
+    eyebrow: "Group planning · Full-stack build",
     description:
-      "A group decision-making app that takes friends from \"what should we do?\" to a concrete plan in under 2 minutes. One person creates a rally, shares a code, everyone votes on budget, vibe, and distance — then AI recommends venues and the group goes.",
+      "A faster answer to \"what should we do?\" One person starts a Rally and shares a code; friends vote on budget, vibe, and distance; then AI turns the group’s overlap into venue recommendations.",
+    highlights: [
+      "Code-based group sessions",
+      "Preference voting across three practical constraints",
+      "AI-assisted venue recommendations",
+      "Group coordination through Twilio",
+    ],
     techStack: ["React 19", "TypeScript", "Vite", "Tailwind CSS", "Express 5", "PostgreSQL", "Twilio"],
   },
   {
     title: "Circles",
+    eyebrow: "Social systems · Technical prototype",
     description:
-      "A social platform with a vector-based permission system for granular content sharing. Users create custom circles — Work, Family, Friends — and selectively share posts with specific groups.",
+      "An experiment in making online sharing feel more like real life. People organize relationships into custom circles—such as Family, Friends, and Work—and choose exactly which groups can see each post.",
+    highlights: [
+      "Vector-based audience model",
+      "Granular visibility for every post",
+      "Custom groups that can reflect real relationships",
+      "Permission logic prototyped with NumPy",
+    ],
     techStack: ["Python", "NumPy"],
   },
 ];
@@ -74,15 +88,23 @@ export default function Portfolio() {
         <div 
           ref={addToRefs}
           data-section="header"
-          className={`flex justify-between items-start mb-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`mb-12 flex items-start justify-between gap-8 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             visibleSections.has('header')
               ? 'translate-y-0 opacity-100' 
               : 'translate-y-6 opacity-0'
           }`}
         >
-          <div>
-            <h1 className="font-display text-4xl font-extrabold mb-2 crt-cursor">Portfolio</h1>
-            <p className="text-lg text-[var(--text-muted)]">Interactive products and systems, built end to end</p>
+          <div className="max-w-3xl">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--accent)]">
+              Selected work
+            </p>
+            <h1 className="font-display text-4xl font-extrabold leading-tight sm:text-5xl crt-cursor">
+              Projects built from the idea up.
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
+              Finished products and focused experiments, built end to end—from the useful
+              interaction to the system behind it and the details that make it hold up.
+            </p>
           </div>
           <ReturnButton />
         </div>
@@ -105,8 +127,8 @@ export default function Portfolio() {
             techStack={featuredProject.techStack}
             liveUrl={featuredProject.liveUrl}
             githubUrl={featuredProject.githubUrl}
-            liveLabel="Play the games"
-            githubLabel="View source"
+            liveLabel="Play Summer Games"
+            githubLabel="Explore the code"
             featured
             visual={<SummerGamesPreview />}
           />
@@ -115,19 +137,22 @@ export default function Portfolio() {
         <div
           ref={addToRefs}
           data-section="more-work"
-          className={`mb-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`mb-5 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             visibleSections.has('more-work')
               ? 'translate-y-0 opacity-100'
               : 'translate-y-6 opacity-0'
           }`}
         >
-          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--text-muted)]">
-            More work
+          <h2 className="font-display text-2xl font-bold">
+            Other explorations
           </h2>
+          <p className="mt-2 max-w-2xl leading-relaxed text-[var(--text-muted)]">
+            Smaller builds for exploring how people decide together and share with intention.
+          </p>
         </div>
 
         {/* Supporting Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.08fr_0.92fr]">
           {projects.map((project, index) => (
             <div
               key={project.title}
@@ -142,7 +167,9 @@ export default function Portfolio() {
             >
               <ProjectCard
                 title={project.title}
+                eyebrow={project.eyebrow}
                 description={project.description}
+                highlights={project.highlights}
                 techStack={project.techStack}
               />
             </div>

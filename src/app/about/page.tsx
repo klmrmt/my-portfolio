@@ -51,102 +51,94 @@ export default function About() {
           data-section="hero"
           className={`mb-16 pt-8 ${sectionClass("hero")}`}
         >
-          <h1 className="font-display text-5xl font-extrabold tracking-tight crt-cursor">About Me</h1>
-          <div className="mt-6 h-px w-16 bg-[var(--border)]" />
+          <h1 className="font-display text-5xl font-extrabold tracking-tight crt-cursor">
+            Hey, I&apos;m Kyle.
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-[var(--text-muted)]">
+            Software engineer in Chicago.
+          </p>
+          <div className="mt-8 h-px w-16 bg-[var(--border)]" />
         </section>
 
-        {/* My Story */}
+        {/* How I got here */}
         <section
           ref={addToRefs}
           data-section="story"
           className={`mb-14 ${sectionClass("story", "delay-75")}`}
         >
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
+            How I got here
+          </h2>
           <div className="space-y-4 text-base leading-relaxed">
             <p>
-              I first got into programming in high school, where my school offered CS classes
-              that immediately clicked for me. It wasn&apos;t completely new territory though&mdash;my
-              dad is a software engineer, so I grew up seeing code on his screen long before I
-              ever wrote my first line. That early exposure made engineering feel familiar, and
-              once I finally tried it myself, I was hooked.
+              Back when I was a kid, I remember staring at my dad&apos;s computer screen and seeing
+              code and terminals for the first time. Later, when he told me more about what he
+              did, I decided I wanted to do something similar in engineering. He started as an
+              electrical engineer and later became a software engineer working in telecom
+              networking. By high school, I was dabbling in engineering classes to see if I liked
+              them. I took computer science classes too and realized that I really enjoyed the
+              problem-solving they gave me.
             </p>
             <p>
-              After graduating in 2022, I joined Epsilon as a Software Engineer, where I&apos;ve
-              focused on building automation systems and testing frameworks. A lot of my work
-              sits behind the scenes, but it plays a critical role&mdash;helping teams ship
-              faster, reduce risk, and trust their systems.
-            </p>
-            <p>
-              Outside of engineering, music has been a huge part of my life. I&apos;ve been playing
-              violin since I was five years old, and I&apos;ve been incredibly fortunate to travel
-              and perform around the world with my academy. Those experiences shaped a lot of
-              how I think&mdash;about discipline, creativity, and putting in the work to refine
-              something over time. More recently, I started playing again casually&mdash;last
-              year I even played at a few farmers markets just for fun and to reconnect with it.
-            </p>
-            <p>
-              I also spend a lot of time climbing&mdash;it&apos;s one of the few things that fully
-              pulls me away from a screen. If you climb too, feel free to follow me on{" "}
-              <a
-                href="https://www.kayaclimb.com/user/klmrmt"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 decoration-[var(--text-muted)] transition-colors duration-150 hover:decoration-[var(--text-primary)]"
-              >
-                Kaya (@klmrmt)
-              </a>
-              .
-            </p>
-            <p>
-              Over time, I&apos;ve gravitated toward solving broader engineering
-              problems&mdash;designing systems for scale, improving developer workflows, and
-              building tools that remove friction across teams. I enjoy working on things that
-              don&apos;t just function, but make everything around them better.
+              Since graduating from UIUC in 2022, I&apos;ve been at Epsilon building testing
+              frameworks, automation, and the tooling around them. Much of my current work has
+              focused on improving our overall systems, since many of them were pretty old and
+              hadn&apos;t been maintained well. Most of the repos we maintain started as POCs and
+              were never refactored into production-ready suites. Basically, there were a lot of
+              Band-Aids. Over the past year, I&apos;ve focused on improving our applications, whether
+              that means changing the architecture or improving code quality throughout our
+              repos.
             </p>
           </div>
         </section>
 
-        {/* What Drives Me */}
+        {/* Off screen */}
         <section
           ref={addToRefs}
-          data-section="drives"
-          className={`mb-14 ${sectionClass("drives", "delay-150")}`}
+          data-section="off-screen"
+          className={`mb-14 ${sectionClass("off-screen", "delay-150")}`}
         >
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
-            What Drives Me
+            Off screen
           </h2>
           <div className="space-y-4 text-base leading-relaxed">
             <p>
-              I&apos;m motivated by building things that actually make someone&apos;s life easier.
-            </p>
-            <p>That could mean:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Automating away something repetitive and painful</li>
-              <li>Creating internal tools that engineers rely on every day</li>
-              <li>Or designing systems that quietly make everything run smoother</li>
-            </ul>
-            <p>
-              Lately, I&apos;ve been especially interested in moving closer to product-focused
-              engineering&mdash;building experiences, not just systems. I like the idea of owning
-              something end-to-end and seeing how it impacts real users.
+              I started playing violin when I was five. I spent years traveling and performing
+              with my academy, took a break, and recently started playing again. Last year, that
+              meant playing at a few farmers markets, which was low-stakes and a lot of fun.
             </p>
             <p>
-              I&apos;m also really interested in the social space. It feels like modern social
-              media has slowly drifted away from its original purpose&mdash;helping people stay
-              connected with their friends and actually share life with each other. I&apos;m drawn
-              to the idea of building products that bring that feeling back in a more intentional
-              and meaningful way.
+              I also climb a lot&mdash;stereotypical SWE, I know. It&apos;s the easiest way I&apos;ve
+              found to stop thinking about work for a while. If you climb too, I&apos;m{" "}
+              <a
+                href="https://www.kayaclimb.com/user/klmrmt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-[var(--text-muted)] underline-offset-4 transition-colors duration-150 hover:decoration-[var(--text-primary)]"
+              >
+                @klmrmt on Kaya
+              </a>
+              .
             </p>
+          </div>
+        </section>
+
+        {/* What I am curious about */}
+        <section
+          ref={addToRefs}
+          data-section="curious"
+          className={`mb-14 ${sectionClass("curious", "delay-200")}`}
+        >
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
+            What I&apos;m curious about
+          </h2>
+          <div className="space-y-4 text-base leading-relaxed">
             <p>
-              I care a lot about writing clean, maintainable code&mdash;but also about why
-              I&apos;m building something in the first place. In a world where AI can generate
-              code instantly and products ship faster than ever, I think it matters even more to
-              slow down and build things thoughtfully&mdash;systems that are not just functional,
-              but efficient, elegant, and built to last.
-            </p>
-            <p>
-              At the end of the day, I just like building. Whether it&apos;s a small side project,
-              a new idea, or a system at scale&mdash;that process of turning something from
-              nothing into something real is what keeps me coming back.
+              The part I like most is finding whatever is slow, fragile, or confusing and making
+              it simpler. Lately, I&apos;ve been more interested in building products. I&apos;ve
+              been working on games and a few social platforms on the side. I&apos;ve also been
+              playing around with AI to see how prompting might change the way software engineers
+              work.
             </p>
           </div>
         </section>
