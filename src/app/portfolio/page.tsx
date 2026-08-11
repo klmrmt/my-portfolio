@@ -4,6 +4,17 @@ import ReturnButton from "../components/returnButton";
 import ProjectCard from "../components/ProjectCard";
 import SummerGamesPreview from "../components/SummerGamesPreview";
 
+interface SupportingProject {
+  title: string;
+  eyebrow: string;
+  description: string;
+  highlights: string[];
+  techStack: string[];
+  spotlight?: boolean;
+  liveUrl?: string;
+  liveLabel?: string;
+}
+
 const featuredProject = {
   title: "The Computer Summer Games",
   eyebrow: "Featured project · Live",
@@ -16,11 +27,34 @@ const featuredProject = {
     "Separate world rankings by event and device class",
   ],
   techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "DynamoDB", "PostHog"],
-  liveUrl: "https://summergames.tapp.inc",
-  githubUrl: "https://github.com/klmrmt/summergames",
+  liveUrl: "https://olympics.tapp.inc",
 };
 
-const projects = [
+const projects: SupportingProject[] = [
+  {
+    title: "Goof Balls",
+    eyebrow: "Highlighted project · Live",
+    description:
+      "A last-ball-standing arena game for twelve contestants. Switch between fire, grass, and water to hunt your prey, escape your predator, and survive a shrinking ring—solo, ranked, or with friends.",
+    highlights: [
+      "Twelve-player elemental survival arena",
+      "Solo casual, ranked, and private-room modes",
+      "Authoritative multiplayer simulation with Colyseus",
+      "Mouse, keyboard, and touch controls",
+    ],
+    techStack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Canvas",
+      "Colyseus",
+      "Cloudflare Workers",
+      "AWS",
+    ],
+    spotlight: true,
+    liveUrl: "https://balls.tapp.inc",
+    liveLabel: "Play Goof Balls",
+  },
   {
     title: "Rally",
     eyebrow: "Group planning · Full-stack build",
@@ -126,9 +160,7 @@ export default function Portfolio() {
             highlights={featuredProject.highlights}
             techStack={featuredProject.techStack}
             liveUrl={featuredProject.liveUrl}
-            githubUrl={featuredProject.githubUrl}
             liveLabel="Play Summer Games"
-            githubLabel="Explore the code"
             featured
             visual={<SummerGamesPreview />}
           />
@@ -144,26 +176,28 @@ export default function Portfolio() {
           }`}
         >
           <h2 className="font-display text-2xl font-bold">
-            Other explorations
+            More projects
           </h2>
           <p className="mt-2 max-w-2xl leading-relaxed text-[var(--text-muted)]">
-            Smaller builds for exploring how people decide together and share with intention.
+            Games, group tools, and social experiments.
           </p>
         </div>
 
         {/* Supporting Project Grid */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {projects.map((project, index) => (
             <div
               key={project.title}
               ref={addToRefs}
               data-section={`card-${index}`}
               className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                project.spotlight ? 'md:col-span-2' : ''
+              } ${
                 visibleSections.has(`card-${index}`)
                   ? 'translate-y-0 opacity-100'
                   : 'translate-y-6 opacity-0'
               }`}
-              style={{ transitionDelay: `${(index % 2) * 75}ms` }}
+              style={{ transitionDelay: `${(index % 3) * 75}ms` }}
             >
               <ProjectCard
                 title={project.title}
@@ -171,6 +205,9 @@ export default function Portfolio() {
                 description={project.description}
                 highlights={project.highlights}
                 techStack={project.techStack}
+                spotlight={project.spotlight}
+                liveUrl={project.liveUrl}
+                liveLabel={project.liveLabel}
               />
             </div>
           ))}
