@@ -4,24 +4,20 @@ import ReturnButton from "../components/returnButton";
 
 const timelineItems = [
   {
-    title: "Software Engineer 2",
+    title: "Software Engineer",
     company: "Epsilon",
     location: "Chicago, IL · Hybrid",
-    date: "April 2024 - Present",
+    date: "June 2022 - Present",
+    progression:
+      "Joined as an Associate Software Engineer; promoted to Software Engineer 2 in April 2024.",
     description: [
-      "Guided and mentored interns through a structured program, delineating detailed tasks aligned with overarching project epics",
-      "Designed and implemented a Redis-backed queue system using NestJS to manage High Availability tunnel requests",
-      "Migrated from BrowserMob Proxy to Sauce Labs HTTP Logging, rewriting the validation system and ensuring thread-safe execution — reducing impression regression time by 42% and tagging regression time by 30%",
-    ],
-  },
-  {
-    title: "Associate Software Engineer",
-    company: "Epsilon",
-    location: "Chicago, IL · Hybrid",
-    date: "June 2022 - April 2024",
-    description: [
-      "Led the charge in Selenium testing, collaborating with Sauce Labs to beta test their SC 5.0 while enhancing existing regression testing procedures",
-      "Leveraged expertise in React Native and ExpressJS to serve as the primary liaison for all web applications",
+      "Migrated the testing framework from Amazon EC2 to Amazon EKS, updating core configurations and creating workflows for EKS environments",
+      "Built a configurable proxy integrated with Sauce Labs through a Proxy Auto-Configuration (PAC) file, enabling regression test suites to control HTTP headers",
+      "Migrated validation from BrowserMob Proxy to Sauce Labs HTTP Logging with thread-safe execution, reducing impression regression time by 42% and tagging regression time by 30%",
+      "Built a Redis-backed queue in NestJS to manage high-availability tunnel requests",
+      "Mentored interns through structured plans aligned with project epics, translating work into scoped tasks that supported development and delivery",
+      "Led Selenium test modernization and partnered with Sauce Labs to beta-test Sauce Connect 5.0 while improving regression workflows",
+      "Served as the primary technical liaison for React Native and Express.js web applications",
     ],
   },
   {
@@ -35,7 +31,7 @@ const timelineItems = [
     ],
   },
   {
-    title: "Talent Director / Ex Senior Operations Manager",
+    title: "Talent Director / Former Senior Operations Manager",
     company: "Disruption Labs",
     location: "Champaign, IL · Remote",
     date: "June 2021 - May 2022",
@@ -48,23 +44,48 @@ const timelineItems = [
 ];
 
 const skills = {
-  Professional: [
+  Languages: [
     "Java",
-    "JavaScript/Node.js",
+    "JavaScript",
     "TypeScript",
-    "Selenium",
-    "Docker",
-    "Kubernetes",
-    "JBehave",
-    "Sauce Labs",
-    "Redis",
+    "Python",
+    "SQL",
+    "PowerShell",
+    "Solidity",
+  ],
+  Frameworks: [
+    "Node.js",
     "NestJS",
     "React",
-    "Express",
-    "Amazon Q",
-    "Git",
+    "React Native",
+    "Express.js",
+    "Tailwind CSS",
+    "DSPy",
   ],
-  Misc: ["Figma", "Agile", "Python", "SQL", "Firebase", "VectorDB", "DSPy"],
+  "Testing & Automation": [
+    "Selenium",
+    "JBehave",
+    "Sauce Labs",
+    "BrowserMob Proxy",
+    "Power Automate",
+    "vRA",
+  ],
+  "Infrastructure & Data": [
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Redis",
+    "Firebase",
+    "Vector databases",
+  ],
+  "Developer Tools": [
+    "Git",
+    "Figma",
+    "Amazon Q",
+    "Cursor",
+    "Codex",
+    "Agile",
+  ],
 };
 
 const education = {
@@ -77,19 +98,6 @@ const education = {
 
 const CONTACT_EMAIL = "klmrmt99@gmail.com";
 const CONTACT_PHONE = "224.240.5300";
-
-const projects = [
-  {
-    name: "Threads",
-    description:
-      "Reddit-style web app that allows users to vote for questions of the day and respond",
-  },
-  {
-    name: "Circles",
-    description:
-      "Developing a POC for a social media platform focused on genuine social interaction",
-  },
-];
 
 const socialLinks = [
   {
@@ -134,20 +142,7 @@ const socialLinks = [
 export default function Resume() {
   const [visibleSections, setVisibleSections] = useState(new Set<string>());
   const [emailCopied, setEmailCopied] = useState(false);
-  const [expandedCards, setExpandedCards] = useState(new Set<number>());
   const sectionRefs = useRef<HTMLElement[]>([]);
-
-  const toggleCard = (index: number) => {
-    setExpandedCards((prev) => {
-      const next = new Set(prev);
-      if (next.has(index)) {
-        next.delete(index);
-      } else {
-        next.add(index);
-      }
-      return next;
-    });
-  };
 
   const copyEmail = async () => {
     try {
@@ -194,13 +189,13 @@ export default function Resume() {
         <div
           ref={addToRefs}
           data-section="header"
-          className={`mb-10 flex justify-between items-start transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`mb-10 flex flex-col items-start justify-between gap-5 sm:flex-row transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             visibleSections.has("header")
               ? "translate-y-0 opacity-100"
               : "translate-y-6 opacity-0"
           }`}
         >
-          <div>
+          <div className="min-w-0">
             <h1 className="mb-2 font-display text-4xl font-extrabold crt-cursor">Kyle Morimoto</h1>
             <p className="text-xl text-[var(--text-muted)]">
               Software Engineer
@@ -239,7 +234,7 @@ export default function Resume() {
               </span>
             </p>
           </div>
-          <div className="flex items-stretch gap-3">
+          <div className="flex shrink-0 items-stretch gap-3">
             <a
               href="/Kyle_Morimoto_Resume.pdf"
               download
@@ -263,6 +258,12 @@ export default function Resume() {
             <ReturnButton />
           </div>
         </div>
+
+        <p className="mb-10 max-w-[65ch] leading-relaxed text-[var(--text-muted)]">
+          Product-minded software engineer with 5+ years of experience across
+          backend systems, cloud infrastructure, test automation, and application
+          development.
+        </p>
 
         {/* Education */}
         <section
@@ -331,7 +332,7 @@ export default function Resume() {
         <section
           ref={addToRefs}
           data-section="experience-heading"
-          className={`mb-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-150 ${
+          className={`mb-6 lg:mb-8 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-150 ${
             visibleSections.has("experience-heading")
               ? "translate-y-0 opacity-100"
               : "translate-y-6 opacity-0"
@@ -342,94 +343,50 @@ export default function Resume() {
           </h2>
         </section>
 
-        <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="mb-10 flex flex-col gap-10 sm:gap-12 lg:gap-16">
           {timelineItems.map((item, index) => {
-            const sectionKey = `card-${index}`;
+            const sectionKey = `experience-${index}`;
             const isVisible = visibleSections.has(sectionKey);
-            const isExpanded = expandedCards.has(index);
 
             return (
               <article
                 key={index}
                 ref={addToRefs}
                 data-section={sectionKey}
-                className={`flex flex-col border-2 border-[var(--border)] bg-[var(--surface-primary)] p-5 shadow-[6px_6px_0px_var(--shadow-color)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`grid min-w-0 grid-cols-1 items-start gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-x-12 xl:gap-x-16 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   isVisible
-                    ? "translate-y-0 opacity-100 blur-0 scale-100"
-                    : "translate-y-6 opacity-0 blur-[2px] scale-[0.98]"
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-6 opacity-0"
                 }`}
-                style={{ transitionDelay: `${(index % 2) * 75}ms` }}
               >
-                <div className="mb-2 flex flex-col gap-1">
-                  <h3 className="text-lg font-bold leading-tight">
+                <div className="flex min-w-0 flex-col gap-1 lg:gap-2">
+                  <h3 className="text-lg font-bold leading-tight lg:text-xl">
                     {item.title}
                   </h3>
-                  <span className="w-fit whitespace-nowrap bg-[var(--surface-inverse)] px-1.5 py-0.5 text-xs font-bold text-[var(--text-inverse)]">
+                  <span className="text-sm text-[var(--text-muted)]">
                     {item.date}
                   </span>
                   <span className="font-medium text-[var(--accent)]">
                     {item.company}
                   </span>
-                  <span className="text-xs text-[var(--text-muted)]">
+                  <span className="text-xs text-[var(--text-muted)] lg:text-sm">
                     {item.location}
                   </span>
-                </div>
-                <div className="relative">
-                  <ul
-                    className={`space-y-1.5 text-sm text-[var(--text-muted)] overflow-hidden transition-[max-height] duration-300 ease-in-out ${
-                      isExpanded ? "max-h-[800px]" : "max-h-[7rem]"
-                    }`}
-                  >
-                    {item.description.map((desc, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--border)]" />
-                        {desc}
-                      </li>
-                    ))}
-                  </ul>
-                  {!isExpanded && (
-                    <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[var(--surface-primary)] to-transparent" />
+                  {item.progression && (
+                    <p className="mt-1 text-xs leading-relaxed text-[var(--text-muted)] lg:text-sm">
+                      {item.progression}
+                    </p>
                   )}
                 </div>
-                <button
-                  type="button"
-                  onClick={() => toggleCard(index)}
-                  className="mt-2 self-start text-xs font-semibold text-[var(--accent)] hover:underline underline-offset-2"
-                >
-                  {isExpanded ? "Show less" : "Read more"}
-                </button>
+                <ul className="w-full min-w-0 max-w-[75ch] list-disc space-y-2 pl-5 text-sm leading-relaxed text-[var(--text-muted)] marker:text-[var(--accent)] lg:max-w-none lg:space-y-3 lg:text-base">
+                  {item.description.map((desc, i) => (
+                    <li key={i}>{desc}</li>
+                  ))}
+                </ul>
               </article>
             );
           })}
         </div>
-
-        {/* Extracurricular Projects */}
-        <section
-          ref={addToRefs}
-          data-section="projects"
-          className={`mb-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-150 ${
-            visibleSections.has("projects")
-              ? "translate-y-0 opacity-100"
-              : "translate-y-6 opacity-0"
-          }`}
-        >
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
-            Extracurricular
-          </h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {projects.map((project) => (
-              <div
-                key={project.name}
-                className="border border-[var(--border)] bg-[var(--surface-primary)] p-4 shadow-[3px_3px_0px_var(--shadow-color)]"
-              >
-                <h3 className="mb-1 text-base font-bold">{project.name}</h3>
-                <p className="text-sm leading-relaxed text-[var(--text-muted)]">
-                  {project.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* Contact / Links */}
         <section
