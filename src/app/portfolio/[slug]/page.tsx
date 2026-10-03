@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Fragment } from "react";
 import ProductDemo from "../../components/ProductDemo";
 import { getPortfolioProject, portfolioProjects } from "../projects";
 
@@ -60,7 +62,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         <main
           className={
-            project.gameplay
+            project.gameplay || project.sections?.length
               ? "grid max-w-4xl gap-10 sm:gap-12"
               : "grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(18rem,0.75fr)]"
           }
@@ -69,12 +71,60 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <h2 className="font-display text-2xl font-bold sm:text-3xl">
               Product overview
             </h2>
-            <div className="mt-6 grid max-w-[65ch] gap-5 leading-relaxed text-[var(--text-muted)]">
-              {project.overview.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+            <div className="mt-6 grid gap-5 leading-relaxed text-[var(--text-muted)]">
+              {project.overview.map((paragraph, index) => (
+                <Fragment key={paragraph}>
+                  <p className="max-w-[65ch]">{paragraph}</p>
+                  {project.overviewImage?.afterParagraph === index + 1 && (
+                    <figure className="mx-auto my-1 w-full max-w-xs">
+                      <Image
+                        src={project.overviewImage.src}
+                        width={project.overviewImage.width}
+                        height={project.overviewImage.height}
+                        alt={project.overviewImage.alt}
+                        sizes="(max-width: 400px) 75vw, 320px"
+                        className="h-auto w-full"
+                      />
+                      <figcaption className="mt-3 text-center text-sm leading-relaxed text-[var(--text-muted)]">
+                        {project.overviewImage.caption}
+                      </figcaption>
+                    </figure>
+                  )}
+                </Fragment>
               ))}
             </div>
           </section>
+
+          {project.sections?.map((section) => (
+            <section key={section.heading} className="min-w-0 px-6 sm:px-8">
+              <h2 className="max-w-[30ch] font-display text-2xl font-bold leading-tight sm:text-3xl">
+                {section.heading}
+              </h2>
+              <div className="mt-6 grid max-w-[65ch] gap-5 leading-[1.8] text-[var(--text-muted)]">
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              {section.demo && (
+                <ProductDemo {...section.demo} className="mt-8" />
+              )}
+              {section.image && (
+                <figure className="mt-8">
+                  <Image
+                    src={section.image.src}
+                    width={section.image.width}
+                    height={section.image.height}
+                    alt={section.image.alt}
+                    sizes="(max-width: 768px) 90vw, 832px"
+                    className="h-auto w-full"
+                  />
+                  <figcaption className="mt-3 max-w-[65ch] text-sm leading-relaxed text-[var(--text-muted)]">
+                    {section.image.caption}
+                  </figcaption>
+                </figure>
+              )}
+            </section>
+          ))}
 
           {project.gameplay && (
             <section aria-labelledby="gameplay-heading" className="px-6 sm:px-8">

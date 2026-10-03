@@ -33,6 +33,8 @@ interface ProductDemoProps {
   height: number;
   alt: string;
   caption: string;
+  label?: string;
+  className?: string;
 }
 
 export default function ProductDemo({
@@ -42,6 +44,8 @@ export default function ProductDemo({
   height,
   alt,
   caption,
+  label = "gameplay demo",
+  className = "px-6 sm:px-8",
 }: ProductDemoProps) {
   const imageId = useId();
   const motionPreference = useSyncExternalStore(
@@ -62,7 +66,7 @@ export default function ProductDemo({
       : !motionPreference.reduced;
 
   return (
-    <figure className="min-w-0 px-6 sm:px-8">
+    <figure className={`min-w-0 ${className}`}>
       <Image
         id={imageId}
         src={isPlaying ? src : poster}
@@ -77,7 +81,7 @@ export default function ProductDemo({
         <button
           type="button"
           aria-controls={imageId}
-          aria-label={isPlaying ? "Pause gameplay demo" : "Play gameplay demo"}
+          aria-label={`${isPlaying ? "Pause" : "Play"} ${label}`}
           onClick={() =>
             setPlaybackOverride({
               playing: !isPlaying,

@@ -1,27 +1,107 @@
+interface PortfolioDemo {
+  src: string;
+  poster: string;
+  width: number;
+  height: number;
+  alt: string;
+  caption: string;
+  label?: string;
+}
+
+interface PortfolioImage {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  caption: string;
+}
+
 export interface PortfolioProject {
   slug: string;
   title: string;
   eyebrow: string;
   description: string;
   overview: string[];
+  overviewImage?: PortfolioImage & { afterParagraph: number };
+  sections?: {
+    heading: string;
+    paragraphs: string[];
+    image?: PortfolioImage;
+    demo?: PortfolioDemo;
+  }[];
   gameplay?: {
     heading: string;
     paragraphs: string[];
   };
-  demo?: {
-    src: string;
-    poster: string;
-    width: number;
-    height: number;
-    alt: string;
-    caption: string;
-  };
+  demo?: PortfolioDemo;
   techStack: string[];
   liveUrl?: string;
   liveLabel?: string;
 }
 
 export const portfolioProjects: PortfolioProject[] = [
+  {
+    slug: "brain-cache",
+    title: "Brain Cache",
+    eyebrow: "Mac productivity · Preparing an open-source release",
+    description:
+      "A little pet for quickly saving notes on my Mac, with features built around how I like to work.",
+    overview: [
+      "I saw an ad for an app that basically let you take quick notes in a really simple form. It was like a more extensive to-do list. I liked that idea, but I find myself not really getting into that habit unless it’s quickly available.",
+      "The only time I’ve really felt that way is with sticky notes. Having them easily accessible made it simple for me to add a quick note. I wanted something on my Mac that felt just as easy, something I could do instinctively.",
+      "So I created Brain Cache and its little pet, Blob. It helps me quickly add notes, with a bunch of functionality built to my liking. I can add tags, make checklists, attach files, or set a reminder when I want to come back to something.",
+      "Because so much of it is based on how I like to work, I’m preparing to open source it so people can tailor it to their own liking. The idea is that people can plug and play with what’s there, change what they want, and work on its future development collectively.",
+    ],
+    sections: [
+      {
+        heading: "Making it quick to add a note",
+        paragraphs: [
+          "I wanted to be able to add a note as soon as I thought of it. ⌥ Space brings up a small window, I type, and ⌘ Return saves it. If all I have is a line of text, that’s enough. I can add tags or files when I need them, and the window grows as I write.",
+          "I liked having a little pet attached to this. Blob stays out of the way until I need it, and I can get back to what I was doing after saving a note. Setting reminders and organizing things can wait until I’m looking through the library.",
+        ],
+        image: {
+          src: "/brain-cache-capture.png",
+          width: 1280,
+          height: 310,
+          alt: "Brain Cache’s compact capture panel with Blob, a sample thought, and optional tag and file controls.",
+          caption:
+            "The quick-note window with Blob. Browser preview with a sample note.",
+        },
+      },
+      {
+        heading: "Knowing the note is saved",
+        paragraphs: [
+          "I wanted to save a thought and move on without wondering if it actually saved. Notes stay on my Mac, so I can add them without an account or an internet connection. The app checks that the save worked before showing a confirmation. If it fails, the note stays in the window so I can try again.",
+          "Files I attach are copied into the app’s storage, and edits save as I go. Deleted notes also go to Trash, so I can restore something if I change my mind.",
+        ],
+      },
+      {
+        heading: "Doing more with a note later",
+        paragraphs: [
+          "Some notes stay as a quick thought, and others become something I want to do more with. I added tags and search to help me find them, pins to keep a note nearby, and checklists for things I need to get done. I don’t have to decide any of that when I first add the note.",
+          "If I want to spend more time on a note, I can open its card or expand it for more room to write. When I close it, I’m back where I left off in the library, with the same search and filters. It makes it easier to look through a few notes without losing my place.",
+        ],
+        demo: {
+          src: "/brain-cache-demo.gif",
+          poster: "/brain-cache-library.png",
+          width: 900,
+          height: 600,
+          alt: "Brain Cache’s library opens a sample note for a closer look, then returns to the same notes and checklists.",
+          caption:
+            "Opening a note and coming back to the library. Animated walkthrough using browser previews with sample data.",
+          label: "Brain Cache walkthrough",
+        },
+      },
+    ],
+    techStack: [
+      "Tauri 2",
+      "React 19",
+      "TypeScript",
+      "Rust",
+      "SQLite",
+      "Tiptap",
+    ],
+  },
   {
     slug: "computer-summer-games",
     title: "The Computer Summer Games",
@@ -63,13 +143,62 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "goof-balls",
     title: "Goof Balls",
-    eyebrow: "Multiplayer arena · Live",
+    eyebrow: "Browser battle royale · Live",
     description:
-      "A twelve-player elemental arena where everyone is hunting one opponent, escaping another, and surviving a shrinking ring.",
+      "Agar.io meets rock-paper-scissors, with elements you can switch on the fly and rooms to play with friends.",
     overview: [
-      "Goof Balls is a twelve-player survival game built around a chase that runs in both directions: you are hunting one opponent while another is hunting you. Elemental matchups shape those relationships, and a shrinking arena keeps changing how much room you have to pursue, escape, or reposition.",
-      "The game offers solo casual play, ranked competition, and private rooms. Those modes support different ways to play, from a casual match to a competitive session or a room with friends. Mouse, keyboard, and touch controls make the arena playable across desktop and mobile.",
-      "A shared server runs the multiplayer simulation rather than leaving each player's device to decide what happened. That gives the match a common game state while players react to their targets, their pursuers, and the closing ring.",
+      "I’ve been wanting to try building games with AI, and a friend came to me with an idea that was basically Agar.io plus rock-paper-scissors. It felt like a fun place to start.",
+      "His inspiration came from Kenichi: The Mightiest Disciple. There’s a scene where two martial arts masters play rock-paper-scissors at an absurd speed, watching each other and changing their hands at the last possible moment. For some reason, that idea never left his brain.",
+      "I wanted to see how that could work in a battle royale. I leaned into my old Pokémon days and made fire, grass, and water the choices. You can switch between them as you play, so beating someone takes a bit of skill in reading what they’re doing and deciding when to change.",
+      "It needs a critical mass of players to keep public matches going full time, so there’s single-player for now and private rooms where you can play with friends. I highly recommend trying it with friends. That’s where it really becomes fun.",
+    ],
+    overviewImage: {
+      afterParagraph: 2,
+      src: "/goof-balls-kenichi-scene.png",
+      width: 640,
+      height: 891,
+      alt: "Two martial arts masters rapidly change hand signs during rock-paper-scissors in Kenichi: The Mightiest Disciple.",
+      caption:
+        "The rock-paper-scissors scene from Kenichi: The Mightiest Disciple that inspired my friend’s idea.",
+    },
+    sections: [
+      {
+        heading: "Making the choices easy to pick up",
+        paragraphs: [
+          "Fire beats grass, grass beats water, and water beats fire. That’s the whole triangle. I liked using elements because the relationship feels familiar, especially if you grew up playing Pokémon. Running into someone with the same element just bounces you apart.",
+          "Everyone stays the same size and moves at the same speed. The advantage comes from your position, your timing, and which element you’re using. Switching has a short cooldown, so you have to commit to the choice for a moment before changing again.",
+        ],
+      },
+      {
+        heading: "Giving you a way to jump in",
+        paragraphs: [
+          "I wanted people to be able to try it without waiting for a full lobby. Solo casual puts you in with eleven bots, and solo ranked gives you a personal rating to work on. You can get a feel for the game before inviting anyone else.",
+          "Private rooms let you play with friends, with bots available to fill out the match. It gives us a way to enjoy the multiplayer side while the game is still finding its players.",
+        ],
+        image: {
+          src: "/goof-balls-menu.jpg",
+          width: 1280,
+          height: 720,
+          alt: "Goof Balls’ start screen with solo casual and ranked choices, a multiplayer tab, and a Play button.",
+          caption: "Jump into solo play, or make a private room with friends.",
+        },
+      },
+      {
+        heading: "Keeping the chase moving",
+        paragraphs: [
+          "Once you’re in, you’re trying to catch the elements you can beat while staying away from the ones that beat you. Someone can switch just before you reach them, so a chase can turn around pretty quickly. Rush gives you a burst of movement, and shield gives you a moment to protect yourself.",
+          "The ring keeps shrinking until there’s one ball left. As the space gets smaller, you have less room to avoid each other and more reason to make a move. That’s where the original rock-paper-scissors idea starts to show up: watching someone, changing at the right time, and hoping they don’t change first.",
+        ],
+        demo: {
+          src: "/goof-balls-demo.gif",
+          poster: "/goof-balls-demo-poster.jpg",
+          width: 800,
+          height: 450,
+          alt: "A real Goof Balls solo casual match showing element switches, rush, shield, and the shrinking arena.",
+          caption: "A solo casual match against bots. Switch elements, rush, and shield while the ring closes in.",
+          label: "Goof Balls walkthrough",
+        },
+      },
     ],
     techStack: [
       "Next.js 16",
@@ -107,13 +236,12 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "circles",
     title: "Circles",
-    eyebrow: "Social systems · Technical prototype",
+    eyebrow: "Social media · Concept",
     description:
-      "An experiment in making online sharing behave more like real relationships through precise, human-readable audience controls.",
+      "A social media concept built around overlapping friend circles, so you can choose which group sees each post.",
     overview: [
-      "Circles explores a social-sharing model where the audience can change with each post. The idea is to make room for the different relationships people have, with custom groups and precise visibility controls rather than treating every connection as the same kind of audience.",
-      "The prototype focuses on the permission system behind that experience. A vector-based model represents audience rules, with Python and NumPy used to work through which people should be able to see a post. The technical model supports a product goal of making those choices understandable in everyday language.",
-      "This is a technical proof of concept, not a finished social network. It explores how more flexible audience controls could support sharing that feels closer to real relationships, while keeping the underlying visibility rules explicit.",
+      "Circles is a social media concept based on the friend groups we have in real life. You can create different circles for different groups of friends, and the same person can belong to more than one circle.",
+      "For example, someone could be in both your college circle and your climbing circle. When you share a post, you choose which circle gets to see it. That lets you share something with a specific group of friends without showing it to everyone you know.",
     ],
     techStack: ["Python", "NumPy"],
   },

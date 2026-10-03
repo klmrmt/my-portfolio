@@ -2,6 +2,10 @@
 
 # dependencies
 /node_modules
+/media/brain-cache-demo/node_modules/
+/media/brain-cache-demo/out/
+/media/goof-balls-demo/node_modules/
+/media/goof-balls-demo/out/
 /.pnp
 .pnp.*
 .yarn/*
