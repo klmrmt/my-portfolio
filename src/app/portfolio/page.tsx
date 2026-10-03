@@ -1,217 +1,83 @@
-"use client";
-import { useState, useEffect, useRef } from "react";
-import ReturnButton from "../components/returnButton";
+import type { Metadata } from "next";
+import Link from "next/link";
 import ProjectCard from "../components/ProjectCard";
-import SummerGamesPreview from "../components/SummerGamesPreview";
+import { portfolioProjects } from "./projects";
 
-interface SupportingProject {
-  title: string;
-  eyebrow: string;
-  description: string;
-  highlights: string[];
-  techStack: string[];
-  spotlight?: boolean;
-  liveUrl?: string;
-  liveLabel?: string;
-}
-
-const featuredProject = {
-  title: "The Computer Summer Games",
-  eyebrow: "Featured project · Live",
-  description:
-    "A five-event browser competition disguised as an early-2000s desktop. I designed and built the full experience—from tactile events with mouse, keyboard, and touch controls to server-validated scoring and per-event world rankings.",
-  highlights: [
-    "Five original events, each with a distinct interaction",
-    "Controls tuned for mouse, keyboard, and touch",
-    "Scores validated by the server before they are ranked",
-    "Separate world rankings by event and device class",
-  ],
-  techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "DynamoDB", "PostHog"],
-  liveUrl: "https://olympics.tapp.inc",
+export const metadata: Metadata = {
+  title: "Kyle’s project board · Kyle Morimoto",
+  description: "Games, tools, and experiments I've designed and built.",
 };
 
-const projects: SupportingProject[] = [
-  {
-    title: "Goof Balls",
-    eyebrow: "Highlighted project · Live",
-    description:
-      "A last-ball-standing arena game for twelve contestants. Switch between fire, grass, and water to hunt your prey, escape your predator, and survive a shrinking ring—solo, ranked, or with friends.",
-    highlights: [
-      "Twelve-player elemental survival arena",
-      "Solo casual, ranked, and private-room modes",
-      "Authoritative multiplayer simulation with Colyseus",
-      "Mouse, keyboard, and touch controls",
-    ],
-    techStack: [
-      "Next.js 16",
-      "React 19",
-      "TypeScript",
-      "Canvas",
-      "Colyseus",
-      "Cloudflare Workers",
-      "AWS",
-    ],
-    spotlight: true,
-    liveUrl: "https://balls.tapp.inc",
-    liveLabel: "Play Goof Balls",
-  },
-  {
-    title: "Rally",
-    eyebrow: "Group planning · Full-stack build",
-    description:
-      "A faster answer to \"what should we do?\" One person starts a Rally and shares a code; friends vote on budget, vibe, and distance; then AI turns the group’s overlap into venue recommendations.",
-    highlights: [
-      "Code-based group sessions",
-      "Preference voting across three practical constraints",
-      "AI-assisted venue recommendations",
-      "Group coordination through Twilio",
-    ],
-    techStack: ["React 19", "TypeScript", "Vite", "Tailwind CSS", "Express 5", "PostgreSQL", "Twilio"],
-  },
-  {
-    title: "Circles",
-    eyebrow: "Social systems · Technical prototype",
-    description:
-      "An experiment in making online sharing feel more like real life. People organize relationships into custom circles—such as Family, Friends, and Work—and choose exactly which groups can see each post.",
-    highlights: [
-      "Vector-based audience model",
-      "Granular visibility for every post",
-      "Custom groups that can reflect real relationships",
-      "Permission logic prototyped with NumPy",
-    ],
-    techStack: ["Python", "NumPy"],
-  },
-];
-
 export default function Portfolio() {
-  const [visibleSections, setVisibleSections] = useState(new Set<string>());
-  const sectionRefs = useRef<HTMLElement[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const section = (entry.target as HTMLElement).dataset.section;
-            if (section) {
-              setVisibleSections((prev) => new Set([...prev, section]));
-            }
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    sectionRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const addToRefs = (el: HTMLElement | null) => {
-    if (el && !sectionRefs.current.includes(el)) {
-      sectionRefs.current.push(el);
-    }
-  };
+  const projectCount = portfolioProjects.length;
+  const countLabel = `${String(projectCount).padStart(2, "0")} projects`;
 
   return (
-    <div className="min-h-screen bg-[var(--background)] pt-10 pb-10 text-[var(--text-primary)]">
-      <div className="w-[90%] md:w-[85%] mx-auto">
-        {/* Header */}
-        <div 
-          ref={addToRefs}
-          data-section="header"
-          className={`mb-12 flex items-start justify-between gap-8 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            visibleSections.has('header')
-              ? 'translate-y-0 opacity-100' 
-              : 'translate-y-6 opacity-0'
-          }`}
-        >
-          <div className="max-w-3xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--accent)]">
-              Selected work
-            </p>
-            <h1 className="font-display text-4xl font-extrabold leading-tight sm:text-5xl crt-cursor">
-              Projects built from the idea up.
-            </h1>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[var(--text-muted)]">
-              Finished products and focused experiments, built end to end—from the useful
-              interaction to the system behind it and the details that make it hold up.
+    <div className="min-h-screen bg-[var(--background)] text-[var(--text-primary)]">
+      <div className="mx-auto max-w-[77rem] px-5 sm:px-10 lg:px-14">
+        <header className="flex min-h-[5.5rem] items-center justify-between gap-5 border-b-2 border-[var(--border)] sm:min-h-28">
+          <Link
+            href="/"
+            aria-label="Kyle Morimoto — home"
+            className="inline-flex min-h-11 items-center font-display text-[1.8125rem] font-extrabold tracking-[-0.04em] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
+          >
+            Kyle M<span className="text-[var(--accent)]" aria-hidden="true">_</span>
+          </Link>
+          <p className="font-mono text-right text-[0.5625rem] leading-relaxed text-[var(--text-muted)] sm:text-[0.6875rem]">
+            Software engineer
+            <br />
+            Personal projects &amp; experiments
+          </p>
+        </header>
+
+        <main className="pt-10 pb-12 sm:pt-16 sm:pb-20">
+          <div className="mb-8 grid items-end gap-5 sm:mb-10 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-8">
+            <div>
+              <p className="mb-4 font-mono text-[0.625rem] leading-relaxed uppercase tracking-[0.12em] text-[var(--accent)] sm:text-[0.6875rem]">
+                A small catalogue of things I&apos;ve made
+              </p>
+              <h1 className="crt-cursor mb-5 font-display text-[clamp(2.25rem,4.8vw,3.875rem)] font-extrabold leading-[1.08] tracking-[-0.045em] [overflow-wrap:anywhere]">
+                Kyle&apos;s project board.
+              </h1>
+              <p className="max-w-[65ch] text-sm leading-relaxed text-[var(--text-muted)] sm:text-[0.9375rem]">
+                Games, tools, and experiments I&apos;ve designed and built.
+              </p>
+            </div>
+            <p className="pb-1 font-mono text-[0.6875rem] whitespace-nowrap text-[var(--text-muted)]">
+              <span className="mr-2 text-[var(--accent)]">
+                {String(projectCount).padStart(2, "0")}
+              </span>
+              projects
             </p>
           </div>
-          <ReturnButton />
-        </div>
 
-        {/* Featured Project */}
-        <section
-          ref={addToRefs}
-          data-section="featured"
-          className={`mb-12 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            visibleSections.has('featured')
-              ? 'translate-y-0 opacity-100'
-              : 'translate-y-6 opacity-0'
-          }`}
-        >
-          <ProjectCard
-            title={featuredProject.title}
-            eyebrow={featuredProject.eyebrow}
-            description={featuredProject.description}
-            highlights={featuredProject.highlights}
-            techStack={featuredProject.techStack}
-            liveUrl={featuredProject.liveUrl}
-            liveLabel="Play Summer Games"
-            featured
-            visual={<SummerGamesPreview />}
-          />
-        </section>
-
-        <div
-          ref={addToRefs}
-          data-section="more-work"
-          className={`mb-5 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            visibleSections.has('more-work')
-              ? 'translate-y-0 opacity-100'
-              : 'translate-y-6 opacity-0'
-          }`}
-        >
-          <h2 className="font-display text-2xl font-bold">
-            More projects
-          </h2>
-          <p className="mt-2 max-w-2xl leading-relaxed text-[var(--text-muted)]">
-            Games, group tools, and social experiments.
-          </p>
-        </div>
-
-        {/* Supporting Project Grid */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              ref={addToRefs}
-              data-section={`card-${index}`}
-              className={`transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                project.spotlight ? 'md:col-span-2' : ''
-              } ${
-                visibleSections.has(`card-${index}`)
-                  ? 'translate-y-0 opacity-100'
-                  : 'translate-y-6 opacity-0'
-              }`}
-              style={{ transitionDelay: `${(index % 3) * 75}ms` }}
-            >
-              <ProjectCard
-                title={project.title}
-                eyebrow={project.eyebrow}
-                description={project.description}
-                highlights={project.highlights}
-                techStack={project.techStack}
-                spotlight={project.spotlight}
-                liveUrl={project.liveUrl}
-                liveLabel={project.liveLabel}
-              />
+          <section aria-labelledby="project-index-heading">
+            <div className="flex flex-wrap justify-between gap-3 border-t border-t-[var(--border)] border-b border-b-[color-mix(in_srgb,var(--border)_25%,var(--background))] py-4 font-mono text-[0.625rem] uppercase tracking-[0.1em]">
+              <h2 id="project-index-heading">The project index</h2>
+              <span className="text-[var(--text-muted)]" aria-hidden="true">
+                No. 001–{String(projectCount).padStart(3, "0")}
+              </span>
             </div>
-          ))}
-        </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {portfolioProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.slug}
+                  index={index}
+                  slug={project.slug}
+                  title={project.title}
+                  description={project.description}
+                  category={project.eyebrow.split(" · ")[0]}
+                />
+              ))}
+            </div>
+          </section>
+        </main>
+
+        <footer className="flex flex-wrap justify-between gap-4 border-t border-[var(--border)] pt-6 pb-20 font-mono text-[0.625rem] leading-relaxed text-[var(--text-muted)]">
+          <span>© {new Date().getFullYear()} Kyle Morimoto</span>
+          <span className="text-[var(--accent)]">End of index / {countLabel}</span>
+        </footer>
       </div>
     </div>
   );
