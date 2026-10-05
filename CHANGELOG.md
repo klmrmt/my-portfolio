@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1] - 2026-10-05
+
+### Fixed
+
+- Center project stories in a readable desktop column, with the title and back button aligned to the content.
+- Remove the oversized blank space inside product overview boxes while preserving mobile layouts and the existing themes.
+
 ## [0.2.0] - 2026-10-03
 
 ### Added
