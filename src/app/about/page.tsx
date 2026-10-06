@@ -108,8 +108,8 @@ export default function About() {
               meant playing at a few farmers markets, which was low-stakes and a lot of fun.
             </p>
             <p>
-              I also climb a lot&mdash;stereotypical SWE, I know. It&apos;s the easiest way I&apos;ve
-              found to stop thinking about work for a while. If you climb too, I&apos;m{" "}
+              I also climb a lot (very typical asian swe)! I&apos;ve found that it scratches
+              a competitive and problem solving itch that I really enjoy. If you climb too, I&apos;m{" "}
               <a
                 href="https://www.kayaclimb.com/user/klmrmt"
                 target="_blank"
