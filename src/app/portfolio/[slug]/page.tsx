@@ -50,9 +50,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <Link
             href="/portfolio"
             aria-label="Back to projects"
-            className="relative inline-flex min-h-11 shrink-0 items-center border-2 border-[var(--border)] bg-[var(--surface-primary)] px-4 py-2 font-semibold text-[var(--text-primary)] shadow-[4px_4px_0px_var(--shadow-color)] transition-all duration-150 ease-out before:pointer-events-none before:absolute before:-inset-2 before:content-[''] hover:translate-x-px hover:translate-y-px hover:bg-[var(--surface-secondary)] hover:shadow-[3px_3px_0px_var(--shadow-color)]"
+            className="relative inline-flex min-h-11 shrink-0 items-center gap-2 border-2 border-[var(--border)] bg-[var(--surface-primary)] px-4 py-2 font-semibold text-[var(--text-primary)] shadow-[4px_4px_0px_var(--shadow-color)] transition-all duration-150 ease-out before:pointer-events-none before:absolute before:-inset-2 before:content-[''] hover:translate-x-px hover:translate-y-px hover:bg-[var(--surface-secondary)] hover:shadow-[3px_3px_0px_var(--shadow-color)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
           >
-            ←<span className="hidden sm:inline"> Projects</span>
+            <span aria-hidden="true">←</span><span className="hidden sm:inline">Projects</span>
           </Link>
           <div className="col-span-2 min-w-0">
             <h1 className="font-display text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] sm:text-6xl crt-cursor">
@@ -150,7 +150,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           {project.demo && <ProductDemo {...project.demo} />}
 
-          <aside className="flex flex-col border-2 border-[var(--border)] bg-[var(--surface-secondary)] p-6 shadow-[6px_6px_0px_var(--shadow-color)] sm:p-8">
+          <aside className="flex flex-col self-start border-2 border-[var(--border)] bg-[var(--surface-secondary)] p-6 shadow-[6px_6px_0px_var(--shadow-color)] sm:p-8">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
               Built with
             </p>
@@ -170,7 +170,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex min-h-11 items-center self-start border-2 border-[var(--border)] bg-[var(--surface-inverse)] px-3 py-2 font-semibold text-[var(--text-inverse)] shadow-[4px_4px_0px_var(--shadow-color)] transition-all duration-150 ease-out hover:-translate-x-px hover:-translate-y-px hover:bg-[var(--surface-primary)] hover:text-[var(--text-primary)] hover:shadow-[5px_5px_0px_var(--shadow-color)]"
+                className="mt-8 inline-flex min-h-11 items-center gap-2 self-start border-2 border-[var(--border)] bg-[var(--surface-inverse)] px-3 py-2 font-semibold text-[var(--text-inverse)] shadow-[4px_4px_0px_var(--shadow-color)] transition-all duration-150 ease-out hover:-translate-x-px hover:-translate-y-px hover:bg-[var(--surface-primary)] hover:text-[var(--text-primary)] hover:shadow-[5px_5px_0px_var(--shadow-color)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
               >
                 {project.liveLabel} <span aria-hidden="true">↗</span>
               </Link>
