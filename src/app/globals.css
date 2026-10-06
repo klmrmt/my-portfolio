@@ -36,7 +36,7 @@ html[data-theme="dark"] {
   --surface-tertiary: #252200;
   --surface-inverse: #ffb000;
   --text-primary: #ffb000;
-  --text-muted: #b37a00;
+  --text-muted: #d09c3b;
   --text-inverse: #0a0a00;
   --border: #ffb000;
   --accent: #ffd866;
@@ -55,8 +55,12 @@ body {
 html[data-theme="dark"] body {
   font-family: var(--font-geist-mono), ui-monospace, "Cascadia Code",
     "Source Code Pro", Menlo, Consolas, monospace;
-  text-shadow: 0 0 4px rgba(255, 176, 0, 0.45), 0 0 12px rgba(255, 176, 0, 0.15);
   animation: crt-flicker 4s infinite;
+}
+
+/* Keep the phosphor glow on headings, leaving reading text crisp. */
+html[data-theme="dark"] :is(h1, h2, h3, .crt-cursor) {
+  text-shadow: 0 0 8px rgba(255, 176, 0, 0.2);
 }
 
 @keyframes crt-flicker {
@@ -80,9 +84,9 @@ html[data-theme="dark"] body::before {
   background: repeating-linear-gradient(
     to bottom,
     transparent 0px,
-    transparent 2px,
-    rgba(255, 176, 0, 0.04) 2px,
-    rgba(255, 176, 0, 0.04) 4px
+    transparent 3px,
+    rgba(255, 176, 0, 0.025) 3px,
+    rgba(255, 176, 0, 0.025) 4px
   );
 }
 
@@ -96,7 +100,7 @@ html[data-theme="dark"] body::after {
   background: radial-gradient(
     ellipse at center,
     transparent 50%,
-    rgba(0, 0, 0, 0.45) 100%
+    rgba(0, 0, 0, 0.16) 100%
   );
 }
 
@@ -113,4 +117,11 @@ html[data-theme="dark"] .crt-cursor::after {
   font-weight: bold;
   color: var(--text-primary);
   animation: blink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="dark"] body,
+  html[data-theme="dark"] .crt-cursor::after {
+    animation: none;
+  }
 }

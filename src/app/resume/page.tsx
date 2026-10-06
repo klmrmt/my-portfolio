@@ -215,7 +215,7 @@ export default function Resume() {
                 <button
                   type="button"
                   onClick={copyEmail}
-                  className="inline-flex items-center border-2 border-[var(--border)] bg-[var(--surface-secondary)] px-2 py-0.5 text-xs font-semibold text-[var(--text-primary)] shadow-[2px_2px_0px_var(--shadow-color)] transition-all hover:translate-x-[-1px] hover:translate-y-[-1px] active:translate-x-[1px] active:translate-y-[1px]"
+                  className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-xs font-semibold text-[var(--text-primary)] underline decoration-[var(--border)] underline-offset-4 transition-colors hover:text-[var(--accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
                   aria-label={
                     emailCopied
                       ? "Email copied to clipboard"
@@ -238,7 +238,8 @@ export default function Resume() {
             <a
               href="/Kyle_Morimoto_Resume.pdf"
               download
-              className="inline-flex items-center gap-2 border-2 border-[var(--border)] bg-[var(--surface-primary)] px-4 py-2 font-semibold text-[var(--text-primary)] shadow-[4px_4px_0px_var(--shadow-color)] transition-all duration-150 ease-out hover:translate-x-[-1px] hover:translate-y-[-1px] hover:bg-[var(--surface-secondary)] hover:shadow-[5px_5px_0px_var(--shadow-color)]"
+              aria-label="Download resume PDF"
+              className="inline-flex min-h-11 items-center gap-2 border-2 border-[var(--border)] bg-[var(--surface-primary)] px-4 py-2 font-semibold text-[var(--text-primary)] shadow-[4px_4px_0px_var(--shadow-color)] transition-all duration-150 ease-out hover:translate-x-[-1px] hover:translate-y-[-1px] hover:bg-[var(--surface-secondary)] hover:shadow-[5px_5px_0px_var(--shadow-color)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]"
             >
               <svg
                 className="h-5 w-5"
@@ -253,7 +254,7 @@ export default function Resume() {
                   d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3"
                 />
               </svg>
-              <span className="hidden sm:inline">Resume</span>
+              <span>Resume PDF</span>
             </a>
             <ReturnButton />
           </div>
@@ -308,20 +309,13 @@ export default function Resume() {
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]">
             Skills
           </h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-x-12 gap-y-6 sm:grid-cols-2">
             {Object.entries(skills).map(([category, items]) => (
               <div key={category}>
-                <h4 className="mb-2 text-sm font-bold">{category}</h4>
-                <div className="flex flex-wrap gap-2">
-                  {items.map((skill, i) => (
-                    <span
-                      key={i}
-                      className="border border-[var(--border)] px-3 py-1 text-sm font-medium transition-colors duration-150 hover:bg-[var(--surface-secondary)]"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+                <h3 className="mb-2 text-sm font-bold">{category}</h3>
+                <p className="max-w-[55ch] text-base leading-relaxed text-[var(--text-muted)]">
+                  {items.join(", ")}
+                </p>
               </div>
             ))}
           </div>

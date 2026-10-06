@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.2.1] - 2026-10-06
+
+### Changed
+
+- Read project cards with clearer typography and more room at tablet widths.
+- Browse resume skills as simple text groups, with clearer copy and PDF download controls.
+- Update the About page with Kyle's latest climbing introduction.
+
+### Fixed
+
+- Center project stories in a readable desktop column, with the title and back button aligned to the content.
+- Remove the oversized blank space inside product overview boxes while preserving mobile layouts and the existing themes.
+- Keep project technology panels sized to their contents and separate navigation icons from their labels.
+- Improve dark-theme readability with sharper body text, gentler CRT effects, and reduced-motion support for flicker and cursor animations.
+
 ## [0.2.0] - 2026-10-03
 
 ### Added
