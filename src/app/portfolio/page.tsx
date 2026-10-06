@@ -23,7 +23,7 @@ export default function Portfolio() {
           >
             Kyle M<span className="text-[var(--accent)]" aria-hidden="true">_</span>
           </Link>
-          <p className="font-mono text-right text-[0.5625rem] leading-relaxed text-[var(--text-muted)] sm:text-[0.6875rem]">
+          <p className="max-w-[12rem] font-mono text-right text-xs leading-relaxed text-[var(--text-muted)] sm:max-w-none">
             Software engineer
             <br />
             Personal projects &amp; experiments
@@ -33,17 +33,17 @@ export default function Portfolio() {
         <main className="pt-10 pb-12 sm:pt-16 sm:pb-20">
           <div className="mb-8 grid items-end gap-5 sm:mb-10 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-8">
             <div>
-              <p className="mb-4 font-mono text-[0.625rem] leading-relaxed uppercase tracking-[0.12em] text-[var(--accent)] sm:text-[0.6875rem]">
+              <p className="mb-4 font-mono text-xs leading-relaxed uppercase tracking-[0.12em] text-[var(--accent)]">
                 A small catalogue of things I&apos;ve made
               </p>
               <h1 className="crt-cursor mb-5 font-display text-[clamp(2.25rem,4.8vw,3.875rem)] font-extrabold leading-[1.08] tracking-[-0.045em] [overflow-wrap:anywhere]">
                 Kyle&apos;s project board.
               </h1>
-              <p className="max-w-[65ch] text-sm leading-relaxed text-[var(--text-muted)] sm:text-[0.9375rem]">
+              <p className="max-w-[65ch] text-base leading-relaxed text-[var(--text-muted)]">
                 Games, tools, and experiments I&apos;ve designed and built.
               </p>
             </div>
-            <p className="pb-1 font-mono text-[0.6875rem] whitespace-nowrap text-[var(--text-muted)]">
+            <p className="pb-1 font-mono text-xs whitespace-nowrap text-[var(--text-muted)]">
               <span className="mr-2 text-[var(--accent)]">
                 {String(projectCount).padStart(2, "0")}
               </span>
@@ -52,14 +52,14 @@ export default function Portfolio() {
           </div>
 
           <section aria-labelledby="project-index-heading">
-            <div className="flex flex-wrap justify-between gap-3 border-t border-t-[var(--border)] border-b border-b-[color-mix(in_srgb,var(--border)_25%,var(--background))] py-4 font-mono text-[0.625rem] uppercase tracking-[0.1em]">
+            <div className="flex flex-wrap justify-between gap-3 border-t border-t-[var(--border)] border-b border-b-[color-mix(in_srgb,var(--border)_25%,var(--background))] py-4 font-mono text-xs uppercase tracking-[0.1em]">
               <h2 id="project-index-heading">The project index</h2>
               <span className="text-[var(--text-muted)]" aria-hidden="true">
                 No. 001–{String(projectCount).padStart(3, "0")}
               </span>
             </div>
 
-            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
               {portfolioProjects.map((project, index) => (
                 <ProjectCard
                   key={project.slug}
@@ -74,7 +74,7 @@ export default function Portfolio() {
           </section>
         </main>
 
-        <footer className="flex flex-wrap justify-between gap-4 border-t border-[var(--border)] pt-6 pb-20 font-mono text-[0.625rem] leading-relaxed text-[var(--text-muted)]">
+        <footer className="flex flex-wrap justify-between gap-4 border-t border-[var(--border)] pt-6 pb-20 font-mono text-xs leading-relaxed text-[var(--text-muted)]">
           <span>© {new Date().getFullYear()} Kyle Morimoto</span>
           <span className="text-[var(--accent)]">End of index / {countLabel}</span>
         </footer>
